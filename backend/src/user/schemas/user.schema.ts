@@ -38,6 +38,8 @@ export class User
 
     @Prop()
     passwordResetExpires?: Date;
+
+    //reset password
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
