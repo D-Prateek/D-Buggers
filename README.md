@@ -41,25 +41,25 @@ Hackathon of Hack for Nepal
       </td>
 
 <td align="center" valign="top" width="14.28%">
-   <a href="https://github.com/n3vilreal"><img src=https://avatars.githubusercontent.com/u/168754188?v=100" width="100px;" alt="Nebil Khanal"/><br /><sub><b>Nebil Khanal</b></sub></a>
-   <br />
-   <a href="https://github.com/n3vilreal" title="Github">💻</a>
-   <a href="#Nebil" title="Front End Devloper">🖥️</a>
-   </td>
-      
-<td align="center" valign="top" width="14.28%">
-   <a href="https://github.com/KravKo"><img src= width="100px;" alt="Sugam Pandit"/><br /><sub><b>Sugam Pandit</b></sub></a>
-   <br />
-   <a href="" title="Github">💻</a>
-   <a href="#Sugam" title="Developer">🖥️</a>
-      </td>
-
-   <td align="center" valign="top" width="14.28%">
    <a href="https://github.com/Naman-y1"><img src=https://avatars.githubusercontent.com/u/190712851?v=4=100" width="100px;" alt="Naman Yadav"/><br /><sub><b>Naman Yadav</b></sub></a>
    <br />
    <a href="https://github.com/Naman-y1" title="Github">💻</a>
    <a href="#Naman" title="Designer">📝</a>
       </td>
       
+<td align="center" valign="top" width="14.28%">
+   <a href="https://github.com/SetoParewa"><img src=https://avatars.githubusercontent.com/u/216116627?v=4 width="100px;" alt="Sugam Pandit"/><br /><sub><b>Sugam Pandit</b></sub></a>
+   <br />
+   <a href="" title="Github">💻</a>
+   <a href="#Sugam" title="Front End Developer">🖥️</a>
+      </td>
+      
+<td align="center" valign="top" width="14.28%">
+   <a href="https://github.com/n3vilreal"><img src=https://avatars.githubusercontent.com/u/168754188?v=100" width="100px;" alt="Nebil Khanal"/><br /><sub><b>Nebil Khanal</b></sub></a>
+   <br />
+   <a href="https://github.com/n3vilreal" title="Github">💻</a>
+   <a href="#Nebil" title="Back End Devloper">🖥️</a>
+   </td>
+
    </tbody>
 </table>
