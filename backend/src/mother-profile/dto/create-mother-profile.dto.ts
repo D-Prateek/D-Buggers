@@ -1,26 +1,40 @@
-import { IsString, IsBoolean, IsDateString, IsOptional, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsDateString,
+  IsOptional,
+  IsNumber,
+  IsEnum,
+  IsNotEmpty,
+  ValidateIf,
+} from 'class-validator';
+import { PregnancyStatus } from '../schemas/mother-profile.schema'; // Adjust the import path if needed
 
-export class CreateMotherProfileDto {
-  @IsString()
-  name: string;
+export class CreateMotherProfileDto 
+{
+  
+    @IsNotEmpty()
+    @IsString()
+    name: string;
 
-  @IsOptional()
-  @IsNumber()
-  age?: number;
+    @IsNotEmpty()
+    @IsNumber()
+    age: number;
 
-  @IsOptional()
-  @IsString()
-  contact?: string;
+    @IsOptional()
+    @IsString()
+    contact?: string;
 
-  @IsOptional()
-  @IsString()
-  address?: string;
+    @IsOptional()
+    @IsString()
+    address?: string;
 
-  @IsOptional()
-  @IsBoolean()
-  isPregnant?: boolean;
+    @IsOptional()
+    @IsEnum(PregnancyStatus)
+    pregnancyStatus?: PregnancyStatus;
 
-  @IsOptional()
-  @IsDateString()
-  expectedDeliveryDate?: string;
+    
+    @ValidateIf((o) => o.pregnancyStatus === PregnancyStatus.PREGNANT)
+    @IsNotEmpty({ message: 'Expected delivery date is required when pregnant.' })
+    @IsDateString()
+    expectedDeliveryDate: string; 
 }

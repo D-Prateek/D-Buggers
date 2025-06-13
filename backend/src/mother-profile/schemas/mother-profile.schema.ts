@@ -1,14 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
+
+export enum PregnancyStatus {
+  PREGNANT = 'pregnant',
+  POST_MATERNAL = 'post-maternal',
+  NONE = 'none',
+}
+
 export type MotherProfileDocument = MotherProfile & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class MotherProfile {
   @Prop({ required: true })
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   age: number;
 
   @Prop()
@@ -17,10 +24,14 @@ export class MotherProfile {
   @Prop()
   address: string;
 
-  @Prop()
-  isPregnant: boolean;
+  @Prop({
+    type: String,
+    enum: Object.values(PregnancyStatus), 
+    default: PregnancyStatus.NONE,
+  })
+  pregnancyStatus: PregnancyStatus;
 
-  @Prop()
+  @Prop({ type: Date, required: false })
   expectedDeliveryDate: Date;
 }
 
