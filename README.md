@@ -27,5 +27,39 @@ Hackathon of Hack for Nepal
 
 **Follow these steps to get started with Rakta**
 
-##Usage
-##Contributors
+## Usage
+
+## Contributors
+
+<table>
+   <tbody>
+<td align="center" valign="top" width="14.28%">
+   <a href="https://github.com/Prateek19-png"><img src=https://avatars.githubusercontent.com/u/191016717?s=100" width="100px;" alt="Prateek Dangal"/><br /><sub><b>Prateek Dangal</b></sub></a>
+   <br />
+   <a href="https://github.com/Prateek19-png" title="Github">💻</a>
+   <a href="#Prateek" title="Project Manager">🧑‍💻</a>
+      </td>
+
+<td align="center" valign="top" width="14.28%">
+   <a href="https://github.com/n3vilreal"><img src=https://avatars.githubusercontent.com/u/168754188?v=100" width="100px;" alt="Nebil Khanal"/><br /><sub><b>Nebil Khanal</b></sub></a>
+   <br />
+   <a href="https://github.com/n3vilreal" title="Github">💻</a>
+   <a href="#Nebil" title="Front End Devloper">🖥️</a>
+   </td>
+      
+<td align="center" valign="top" width="14.28%">
+   <a href="https://github.com/KravKo"><img src=https://avatars.githubusercontent.com/u/86314507?v=4=100" width="100px;" alt="Sugam Pandit"/><br /><sub><b>Sugam Pandit</b></sub></a>
+   <br />
+   <a href="https://github.com/KravKo" title="Github">💻</a>
+   <a href="#KravKo" title="Developer">🖥️</a>
+      </td>
+
+   <td align="center" valign="top" width="14.28%">
+   <a href="https://github.com/Naman-y1"><img src=https://avatars.githubusercontent.com/u/190712851?v=4=100" width="100px;" alt="Naman Yadav"/><br /><sub><b>Naman Yadav</b></sub></a>
+   <br />
+   <a href="https://github.com/Naman-y1" title="Github">💻</a>
+   <a href="#Naman" title="Designer">📝</a>
+      </td>
+      
+   </tbody>
+</table>
