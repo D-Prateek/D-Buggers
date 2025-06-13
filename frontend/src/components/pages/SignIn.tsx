@@ -19,7 +19,7 @@ export default function SignIn({ onPageChange }: SignInProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    
     console.log('Sign in:', formData);
   };
 
@@ -70,11 +70,11 @@ export default function SignIn({ onPageChange }: SignInProps) {
             </Button>
 
             <div className="text-center">
-              <span className="text-gray-600">Don't have an account? </span>
-              <button
+                  <span className="text-gray-600">Don't have an account? </span>
+                   <button
                 type="button"
                 onClick={() => onPageChange('signup')}
-                className="text-red-600 hover:text-red-700 font-medium"
+                 className="text-red-600 hover:text-red-700 font-medium"
               >
                 Sign up here
               </button>
