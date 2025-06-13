@@ -48,10 +48,10 @@ Hackathon of Hack for Nepal
    </td>
       
 <td align="center" valign="top" width="14.28%">
-   <a href="https://github.com/KravKo"><img src=https://avatars.githubusercontent.com/u/86314507?v=4=100" width="100px;" alt="Sugam Pandit"/><br /><sub><b>Sugam Pandit</b></sub></a>
+   <a href="https://github.com/KravKo"><img src= width="100px;" alt="Sugam Pandit"/><br /><sub><b>Sugam Pandit</b></sub></a>
    <br />
-   <a href="https://github.com/KravKo" title="Github">💻</a>
-   <a href="#KravKo" title="Developer">🖥️</a>
+   <a href="" title="Github">💻</a>
+   <a href="#Sugam" title="Developer">🖥️</a>
       </td>
 
    <td align="center" valign="top" width="14.28%">
