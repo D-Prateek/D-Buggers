@@ -32,6 +32,12 @@ export class User
 
     @Prop({ type: String, enum: Object.values(BloodGroup), required: true })
     bloodGroup: BloodGroup;
+
+    @Prop()
+    passwordResetToken?: string;
+
+    @Prop()
+    passwordResetExpires?: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
