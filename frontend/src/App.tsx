@@ -3,6 +3,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
+import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 
@@ -15,12 +16,12 @@ function App() {
         return <Home onPageChange={setCurrentPage} />;
       case 'about':
         return <About />;
+      case 'services':
+        return <Services onPageChange={setCurrentPage} />;
       case 'signup':
         return <SignUp onPageChange={setCurrentPage} />;
       case 'signin':
         return <SignIn onPageChange={setCurrentPage} />;
-      case 'services':
-        return <Home onPageChange={setCurrentPage} />; 
       default:
         return <Home onPageChange={setCurrentPage} />;
     }

@@ -22,11 +22,11 @@ export default function SignUp({ onPageChange }: SignUpProps) {
 
   const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
-        const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
-   
-        const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     console.log('Form submitted:', formData);
@@ -35,7 +35,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-md mx-auto px-4">
-           <div className="text-center mb-8">
+        <div className="text-center mb-8">
           <img 
             src="/src/assets/Logo.png" 
             alt="Aama Care Logo" 
@@ -81,7 +81,8 @@ export default function SignUp({ onPageChange }: SignUpProps) {
               required
             />
 
-                      <div className="mb-4">
+         
+            <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Blood Group
               </label>
@@ -116,9 +117,9 @@ export default function SignUp({ onPageChange }: SignUpProps) {
               </div>
             </div>
 
-         
+        
             <div className="mb-6">
-                   <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 What defines you?
               </label>
               <div className="flex space-x-4">
@@ -147,15 +148,15 @@ export default function SignUp({ onPageChange }: SignUpProps) {
               </div>
             </div>
 
-            <Button type="submit" className="w-full mb-4" size="lg">
+                <Button type="submit" className="w-full mb-4" size="lg">
               Create Account
             </Button>
-   
-               <div className="text-center">
+
+            <div className="text-center">
               <span className="text-gray-600">Already have an account? </span>
               <button
                 type="button"
-                      onClick={() => onPageChange('signin')}
+                onClick={() => onPageChange('signin')}
                 className="text-red-600 hover:text-red-700 font-medium"
               >
                 Sign in here
@@ -163,7 +164,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
             </div>
           </form>
         </Card>
-         </div>
+      </div>
     </div>
   );
 }
