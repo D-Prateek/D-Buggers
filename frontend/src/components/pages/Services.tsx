@@ -82,9 +82,9 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
          medicalConditions: 'None',
     allergies: 'None',
     medications: 'Prenatal vitamins',
-    lastCheckup: 'January 10, 2025',
-    nextAppointment: 'February 5, 2025',
-    doctor: 'Dr. Kamala Thapa',
+    lastCheckup: 'None',
+    nextAppointment: 'None',
+    doctor: 'None',
   };
 
   const vaccinationSchedule = [
