@@ -6,6 +6,8 @@ import About from './components/pages/About';
 import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
+import Quiz from './components/pages/Quiz';
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -41,6 +43,8 @@ function App() {
         return <SignUp onPageChange={handlePageChange} />;
       case 'signin':
         return <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
+      case 'quiz':
+        return <Quiz onPageChange={setCurrentPage} />;
       default:
         return <Home onPageChange={handlePageChange} />;
     }
