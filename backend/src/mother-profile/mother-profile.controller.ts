@@ -12,7 +12,7 @@ import {
 import { MotherProfileService } from './mother-profile.service';
 import { CreateMotherProfileDto } from './dto/create-mother-profile.dto';
 import { UpdateMotherProfileDto } from './dto/update-mother-profile.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger'; // Often used for documentation
+import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { MotherProfile } from './schemas/mother-profile.schema';
 
 @ApiTags('mother-profiles')

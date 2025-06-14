@@ -7,7 +7,7 @@ import {
   IsNotEmpty,
   ValidateIf,
 } from 'class-validator';
-import { PregnancyStatus } from '../schemas/mother-profile.schema'; // Adjust the import path if needed
+import { PregnancyStatus } from '../schemas/mother-profile.schema';
 
 export class CreateMotherProfileDto 
 {
