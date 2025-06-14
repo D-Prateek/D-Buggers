@@ -1,7 +1,3 @@
-# Hack_for_Nepal
-
-Hackathon of Hack for Nepal
-
 # Aama Care
 
 ## 📝Table of contents
