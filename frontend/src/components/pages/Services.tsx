@@ -64,7 +64,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
     {
       title: 'Postpartum Recovery',
       description: 'Recovery tips and care after delivery',
-      videoSource: 'https://youtu.be/JgDNFQ2RaLQ?si=cCEjP9pvaBfxYX8k',
+      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
     },
   ];
 

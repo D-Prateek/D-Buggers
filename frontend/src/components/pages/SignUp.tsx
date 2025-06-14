@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import Card from '../ui/Card';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
-import axios from 'axios'; // 1. Import axios
+import axios from 'axios'; 
 
 interface SignUpProps {
   onPageChange: (page: string) => void;
@@ -19,7 +19,6 @@ export default function SignUp({ onPageChange }: SignUpProps) {
     userType: 'pregnant',
   });
   
-  // 2. Add state for success and error messages
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -32,13 +31,11 @@ export default function SignUp({ onPageChange }: SignUpProps) {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  // 3. Update the handleSubmit function
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSuccessMessage('');
     setErrorMessage('');
 
-    // We only need the fields that the backend expects (from RegisterUserDto)
     const dataToSubmit = {
       fullName: formData.fullName,
       phoneNumber: formData.phoneNumber,
@@ -47,27 +44,21 @@ export default function SignUp({ onPageChange }: SignUpProps) {
       bloodGroup: formData.bloodGroup,
     };
     
-    // Check if bloodGroup is selected
     if (!dataToSubmit.bloodGroup) {
         setErrorMessage('Please select a blood group.');
         return;
     }
 
     try {
-      // The actual API call to your NestJS backend
       const response = await axios.post('http://localhost:3000/auth/register', dataToSubmit);
 
       console.log('User registered successfully:', response.data);
       setSuccessMessage('Account created successfully! You can now sign in.');
-      // Optionally, clear the form or redirect the user
-      // onPageChange('signin');
 
     } catch (err: any) {
       console.error('Registration failed:', err.response ? err.response.data : err.message);
       
-      // Set a user-friendly error message
       if (err.response && err.response.data) {
-        // Handle array of messages from class-validator
         if (Array.isArray(err.response.data.message)) {
             setErrorMessage(err.response.data.message.join(', '));
         } else {
@@ -201,7 +192,6 @@ export default function SignUp({ onPageChange }: SignUpProps) {
               Create Account
             </Button>
             
-            {/* 4. Display success or error messages */}
             {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
             {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
 
