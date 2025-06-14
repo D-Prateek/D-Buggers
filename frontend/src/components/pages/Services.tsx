@@ -9,7 +9,7 @@ interface ServicesProps {
 }
 
 export default function Services({ onPageChange }: ServicesProps) {
-  const [activeTab, setActiveTab] = useState('guides');
+  const [activeTab, setActiveTab] = useState('profile');
     const [formData, setFormData] = useState({
     name: '',
     dateOfBirth: '',
@@ -63,7 +63,7 @@ export default function Services({ onPageChange }: ServicesProps) {
     {
       title: 'Postpartum Recovery',
       description: 'Recovery tips and care after delivery',
-      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
+      videoSource: 'https://youtu.be/JgDNFQ2RaLQ?si=cCEjP9pvaBfxYX8k',
     },
   ];
 
@@ -257,9 +257,9 @@ export default function Services({ onPageChange }: ServicesProps) {
   const renderProgramTracker = () => (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Government Program Tracker</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Available Government Programs</h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Track your eligibility and application status for government health schemes and subsidies.
+          View your eligibility and application status for government health schemes and subsidies.
         </p>
       </div>
 
@@ -927,7 +927,7 @@ export default function Services({ onPageChange }: ServicesProps) {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Program Tracker
+              Government Programs
             </button>
             
             

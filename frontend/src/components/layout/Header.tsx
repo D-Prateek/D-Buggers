@@ -29,7 +29,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
   const navigation = isLoggedIn ? authNavigation : guestNavigation;
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 pt-3 z-20 h-[12vh]">
+    <header className="bg-white shadow-sm sticky top-0 pt-3 z-20 h-[10vh]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
          
@@ -37,7 +37,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
             <img 
               src="/src/assets/Logo.png" 
               alt="Aama Care Logo" 
-              className="h-[20vh]"
+              className="h-[10vh]"
             />
             <span className="text-xl font-bold text-gray-900">Aama Care</span>
           </div>
@@ -85,7 +85,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
         </div>
        
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200">
+          <div className="md:hidden bg-[#ffffff] m-0 border-t border-gray-200 p-5">
             <div className="flex flex-col space-y-3">
               {navigation.map((item) => (
                 <button
