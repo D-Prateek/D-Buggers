@@ -19,9 +19,9 @@ Hackathon of Hack for Nepal
 ## ⚙️Features
 
 - **Diet plan**: We provide a nutritious diet plan and food to avoid for your Health.
-- **Exercise**:
-- **Vaccination**
-- **Fun Activities**
+- **Exercise**: We provide you a necessary set of Exercise for you.
+- **Vaccination**: We keep track of your vaccinations.
+- **Fun Activities**: We include fun activities which could help you to learn and earn vouchers.
 
 ## 🧑‍💻Installation
 
