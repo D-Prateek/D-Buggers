@@ -6,7 +6,7 @@ import axios from 'axios';
 
 interface SignInProps {
   onPageChange: (page: string) => void;
-  onLoginSuccess: (userData: any) => void;
+  onLoginSuccess: (user: any) => void;
 }
 
 export default function SignIn({ onPageChange, onLoginSuccess }: SignInProps) {
@@ -32,6 +32,7 @@ export default function SignIn({ onPageChange, onLoginSuccess }: SignInProps) {
       console.log('Login successful:', response.data);
 
       onLoginSuccess(response.data.user);
+      onPageChange('pregnancy-profile');
 
     } catch (err: any) {
       console.error('Login failed:', err.response ? err.response.data : err.message);
@@ -90,6 +91,7 @@ export default function SignIn({ onPageChange, onLoginSuccess }: SignInProps) {
               Sign In
             </Button>
             
+
             {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
 
             <div className="text-center">

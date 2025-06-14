@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './components/pages/Home';
@@ -10,8 +10,23 @@ import Quiz from './components/pages/Quiz';
 
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [loggedInUser, setLoggedInUser] = useState(() => {
+    const saved = localStorage.getItem('loggedInUser');
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [currentPage, setCurrentPage] = useState(() => localStorage.getItem('currentPage') || 'home');
+
+  useEffect(() => {
+    if (loggedInUser) {
+      localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    } else {
+      localStorage.removeItem('loggedInUser');
+    }
+  }, [loggedInUser]);
+
+  useEffect(() => {
+    localStorage.setItem('currentPage', currentPage);
+  }, [currentPage]);
 
   const handleLoginSuccess = (userData: any) => {
     setLoggedInUser(userData);

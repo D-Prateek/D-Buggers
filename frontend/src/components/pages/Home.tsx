@@ -60,7 +60,7 @@ export default function Home({ onPageChange }: HomeProps) {
                 <Button 
                   variant="outline" 
                               size="lg" 
-                  className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-gray-900"
+                  className="text-lg px-8 py-3 border-white text-white hover:bg-[rgba(0,0,0,0.5)]"
                   onClick={() => onPageChange('services')}
                 >
                   Learn more
