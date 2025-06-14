@@ -38,13 +38,13 @@ export default function Services({ onPageChange }: ServicesProps) {
       title: 'Prenatal Care Basics',
       duration: '12:30',
       description: 'Essential prenatal care practices for healthy pregnancy',
-      thumbnail: '/src/assets/image copy.png',
+      thumbnail: '/src/assets/Prenatal Care.png',
     },
     {
       title: 'Nutrition During Pregnancy',
       duration: '8:45',
       description: 'Complete guide to healthy eating during pregnancy',
-      thumbnail: '/src/assets/image copy.png',
+      thumbnail: '/src/assets/Nutrition.png',
     },
     {
       title: 'Labor Preparation',
@@ -56,7 +56,7 @@ export default function Services({ onPageChange }: ServicesProps) {
       title: 'Newborn Care',
       duration: '10:15',
       description: 'Essential newborn care techniques',
-      thumbnail: '/src/assets/image copy.png',
+      thumbnail: '/src/assets/Audio Visual Guide.png',
     },
     {
       title: 'Breastfeeding Guide',
