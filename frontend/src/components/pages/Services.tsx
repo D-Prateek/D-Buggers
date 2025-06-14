@@ -886,34 +886,14 @@ export default function Services({ onPageChange }: ServicesProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex space-x-8 overflow-x-auto">
             <button
-              onClick={() => setActiveTab('guides')}
+              onClick={() => setActiveTab('profile')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
-                activeTab === 'guides'
+                activeTab === 'profile'
                   ? 'border-red-500 text-red-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Audio-Visual Guides
-            </button>
-            <button
-              onClick={() => setActiveTab('vaccination')}
-              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
-                activeTab === 'vaccination'
-                  ? 'border-red-500 text-red-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-            >
-              Vaccination Calendar
-            </button>
-            <button
-              onClick={() => setActiveTab('programs')}
-              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
-                activeTab === 'programs'
-                  ? 'border-red-500 text-red-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-            >
-              Program Tracker
+              Pregnancy Profile
             </button>
             <button
               onClick={() => setActiveTab('tracker')}
@@ -936,15 +916,39 @@ export default function Services({ onPageChange }: ServicesProps) {
               Nutrition Guide
             </button>
             <button
-              onClick={() => setActiveTab('profile')}
+              onClick={() => setActiveTab('vaccination')}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
-                activeTab === 'profile'
+                activeTab === 'vaccination'
                   ? 'border-red-500 text-red-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Pregnancy Profile
+              Vaccination Calendar
             </button>
+            <button
+              onClick={() => setActiveTab('guides')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
+                activeTab === 'guides'
+                  ? 'border-red-500 text-red-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Audio-Visual Guides
+            </button>
+            
+            <button
+              onClick={() => setActiveTab('programs')}
+              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors duration-200 whitespace-nowrap ${
+                activeTab === 'programs'
+                  ? 'border-red-500 text-red-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Program Tracker
+            </button>
+            
+            
+            
           </div>
         </div>
       </div>

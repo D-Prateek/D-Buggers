@@ -12,7 +12,7 @@ export default function Footer() {
               <img 
                 src="/src/assets/Logo.png" 
                 alt="Aama Care Logo" 
-                className="w-8 h-8 object-contain"
+                className="h-[10vh] object-contain"
               />
               <span className="text-lg font-bold text-gray-900">Aama Care</span>
             </div>
