@@ -49,11 +49,17 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Home onPageChange={handlePageChange} />;
+        return <Home onPageChange={handlePageChange} isLoggedIn={!!loggedInUser} />;
       case 'about':
         return <About />;
       case 'services':
         return loggedInUser ? <Services onPageChange={handlePageChange} /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
+      case 'pregnancy-tracker':
+        return loggedInUser ? <Services onPageChange={handlePageChange} initialTab="tracker" /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
+      case 'nutrition-guide':
+        return loggedInUser ? <Services onPageChange={handlePageChange} initialTab="nutrition" /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
+      case 'government-program':
+        return loggedInUser ? <Services onPageChange={handlePageChange} initialTab="programs" /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
       case 'signup':
         return <SignUp onPageChange={handlePageChange} />;
       case 'signin':
@@ -61,7 +67,7 @@ function App() {
       case 'quiz':
         return <Quiz onPageChange={setCurrentPage} />;
       default:
-        return <Home onPageChange={handlePageChange} />;
+        return <Home onPageChange={handlePageChange} isLoggedIn={!!loggedInUser} />;
     }
   };
 

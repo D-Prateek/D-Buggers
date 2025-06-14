@@ -5,9 +5,10 @@ import Button from '../ui/Button';
 
 interface HomeProps {
   onPageChange: (page: string) => void;
+  isLoggedIn?: boolean;
 }
 
-export default function Home({ onPageChange }: HomeProps) {
+export default function Home({ onPageChange, isLoggedIn }: HomeProps) {
   const features = [
     {
       icon: Calendar,
@@ -15,20 +16,23 @@ export default function Home({ onPageChange }: HomeProps) {
       description: 'Track your pregnancy weekly with personalized health updates.',
       link: 'Learn More →',
       color: 'from-red-400 to-pink-500',
+      page: 'pregnancy-tracker',
     },
     {
       icon: Heart,
-      title: 'Vital Guides',
-      description: 'Step-by-step pregnancy & newborn care videos',
+      title: 'Nutrition Guide',
+      description: 'Complete nutrition guidance for a healthy pregnancy journey.',
       link: 'Learn More →',
       color: 'from-pink-400 to-red-500',
+      page: 'nutrition-guide',
     },
     {
       icon: Smartphone,
-      title: 'Program Tracker',
+      title: 'Government Program',
       description: 'Never miss important government health schemes and subsidies.',
       link: 'Learn More →',
       color: 'from-red-500 to-pink-400',
+      page: 'government-program',
     },
   ];
 
@@ -54,12 +58,14 @@ export default function Home({ onPageChange }: HomeProps) {
                         Offline guides, SOS alerts, and vital health trackers in rural and urban Nepal—right in your pocket.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-end">
-                <Button size="lg" className="text-lg px-8 py-3" onClick={() => onPageChange('signup')}>
-                  Sign Up Free
-                </Button>
+                {!isLoggedIn && (
+                  <Button size="lg" className="text-lg px-8 py-3" onClick={() => onPageChange('signup')}>
+                    Sign Up Free
+                  </Button>
+                )}
                 <Button 
                   variant="outline" 
-                              size="lg" 
+                  size="lg" 
                   className="text-lg px-8 py-3 border-white text-white hover:bg-[rgba(0,0,0,0.5)]"
                   onClick={() => onPageChange('services')}
                 >
@@ -90,9 +96,9 @@ export default function Home({ onPageChange }: HomeProps) {
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                         <p className="text-gray-600 mb-4 leading-relaxed">{feature.description}</p>
+                <p className="text-gray-600 mb-4 leading-relaxed">{feature.description}</p>
                 <button 
-                  onClick={() => onPageChange('services')}
+                  onClick={() => onPageChange(feature.page)}
                   className="text-red-600 font-medium hover:text-red-700 transition-colors duration-200"
                 >
                   {feature.link}

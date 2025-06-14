@@ -6,10 +6,11 @@ import Button from '../ui/Button';
 
 interface ServicesProps {
   onPageChange: (page: string) => void;
+  initialTab?: string;
 }
 
-export default function Services({ onPageChange }: ServicesProps) {
-  const [activeTab, setActiveTab] = useState('profile');
+export default function Services({ onPageChange, initialTab = 'profile' }: ServicesProps) {
+  const [activeTab, setActiveTab] = useState(initialTab);
     const [formData, setFormData] = useState({
     name: '',
     dateOfBirth: '',

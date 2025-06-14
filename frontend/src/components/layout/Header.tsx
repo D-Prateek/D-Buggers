@@ -56,17 +56,19 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
                 {item.name}
               </button>
             ))}
-            <button
-              onClick={() => onPageChange('quiz')}
-              className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                currentPage === 'quiz'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
-              }`}
-            >
-              <Brain className="w-4 h-4" />
-              <span>Quiz</span>
-            </button>
+            {isLoggedIn && (
+              <button
+                onClick={() => onPageChange('quiz')}
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  currentPage === 'quiz'
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                }`}
+              >
+                <Brain className="w-4 h-4" />
+                <span>Quiz</span>
+              </button>
+            )}
 
             {isLoggedIn ? (
               <button
@@ -114,6 +116,23 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
                   {item.name}
                 </button>
               ))}
+
+              {isLoggedIn && (
+                <button
+                  onClick={() => {
+                    onPageChange('quiz');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    currentPage === 'quiz'
+                      ? 'bg-purple-600 text-white'
+                      : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                  }`}
+                >
+                  <Brain className="w-4 h-4" />
+                  <span>Quiz</span>
+                </button>
+              )}
               
               {isLoggedIn ? (
                 <button
