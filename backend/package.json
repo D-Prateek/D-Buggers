@@ -29,6 +29,7 @@
     "class-transformer": "^0.5.1",
     "mongodb": "^6.17.0",
     "mongoose": "^8.15.2",
+    "nest": "^0.1.6",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.1"
