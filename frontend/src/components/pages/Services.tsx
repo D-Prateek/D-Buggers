@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Play, Calendar, Heart, User, Phone, Mail, MapPin, Droplets, AlertTriangle, Pill, Syringe, FileText, Apple, Clock } from 'lucide-react';
+import { ArrowLeft, Calendar, Heart, User, Phone, Mail, MapPin, Droplets, AlertTriangle, Pill, Syringe, FileText, Apple, Clock } from 'lucide-react';
 import Card from '../ui/Card';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
@@ -36,43 +36,39 @@ export default function Services({ onPageChange }: ServicesProps) {
   const audioVisualGuides = [
     {
       title: 'Prenatal Care Basics',
-      duration: '12:30',
       description: 'Essential prenatal care practices for healthy pregnancy',
-      thumbnail: '/src/assets/Prenatal Care.png',
+      videoSource: 'https://www.youtube.com/embed/h28xTJKCU6g',
     },
+
     {
       title: 'Nutrition During Pregnancy',
-      duration: '8:45',
       description: 'Complete guide to healthy eating during pregnancy',
-      thumbnail: '/src/assets/Nutrition.png',
+      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
     },
     {
       title: 'Labor Preparation',
-      duration: '15:20',
       description: 'Preparing for labor and delivery',
-      thumbnail: '/src/assets/image copy.png',
+      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
     },
     {
       title: 'Newborn Care',
-      duration: '10:15',
       description: 'Essential newborn care techniques',
-      thumbnail: '/src/assets/Audio Visual Guide.png',
+      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
     },
     {
       title: 'Breastfeeding Guide',
-      duration: '14:30',
       description: 'Complete breastfeeding guide for new mothers',
-              thumbnail: '/src/assets/image copy.png',
+      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
     },
     {
       title: 'Postpartum Recovery',
-      duration: '11:45',
       description: 'Recovery tips and care after delivery',
-      thumbnail: '/src/assets/image copy.png',
+      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
     },
   ];
 
-          const profileData = {
+
+    const profileData = {
     name: 'Sita Sharma',
     age: 28,
     email: 'sita.sharma@example.com',
@@ -199,25 +195,12 @@ export default function Services({ onPageChange }: ServicesProps) {
         {audioVisualGuides.map((guide, index) => (
           <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
             <div className="relative mb-4">
-              <img
-                src={guide.thumbnail}
-                alt={guide.title}
-                className="w-full h-48 object-cover rounded-lg"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-30 rounded-lg flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-white bg-opacity-90 rounded-full p-3">
-                  <Play className="w-8 h-8 text-red-600" />
-                </div>
-              </div>
-              <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm">
-                {guide.duration}
-              </div>
+              <iframe className="w-full h-48 object-cover rounded-lg" src={guide.videoSource}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share" allowFullScreen>
+              </iframe>
+              
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">{guide.title}</h3>
             <p className="text-gray-600 text-sm mb-4">{guide.description}</p>
-            <Button variant="outline" className="w-full">
-              Watch Now
-            </Button>
           </Card>
         ))}
       </div>

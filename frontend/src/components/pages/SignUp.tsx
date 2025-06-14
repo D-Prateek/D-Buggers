@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import Card from '../ui/Card';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
+import axios from 'axios'; // 1. Import axios
 
 interface SignUpProps {
   onPageChange: (page: string) => void;
@@ -17,6 +18,11 @@ export default function SignUp({ onPageChange }: SignUpProps) {
     bloodGroup: '',
     userType: 'pregnant',
   });
+  
+  // 2. Add state for success and error messages
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   const [isBloodGroupOpen, setIsBloodGroupOpen] = useState(false);
 
@@ -26,10 +32,51 @@ export default function SignUp({ onPageChange }: SignUpProps) {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // 3. Update the handleSubmit function
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSuccessMessage('');
+    setErrorMessage('');
+
+    // We only need the fields that the backend expects (from RegisterUserDto)
+    const dataToSubmit = {
+      fullName: formData.fullName,
+      phoneNumber: formData.phoneNumber,
+      location: formData.location,
+      password: formData.password,
+      bloodGroup: formData.bloodGroup,
+    };
     
-    console.log('Form submitted:', formData);
+    // Check if bloodGroup is selected
+    if (!dataToSubmit.bloodGroup) {
+        setErrorMessage('Please select a blood group.');
+        return;
+    }
+
+    try {
+      // The actual API call to your NestJS backend
+      const response = await axios.post('http://localhost:3000/auth/register', dataToSubmit);
+
+      console.log('User registered successfully:', response.data);
+      setSuccessMessage('Account created successfully! You can now sign in.');
+      // Optionally, clear the form or redirect the user
+      // onPageChange('signin');
+
+    } catch (err: any) {
+      console.error('Registration failed:', err.response ? err.response.data : err.message);
+      
+      // Set a user-friendly error message
+      if (err.response && err.response.data) {
+        // Handle array of messages from class-validator
+        if (Array.isArray(err.response.data.message)) {
+            setErrorMessage(err.response.data.message.join(', '));
+        } else {
+            setErrorMessage(err.response.data.message);
+        }
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
+    }
   };
 
   return (
@@ -47,6 +94,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
 
         <Card>
           <form onSubmit={handleSubmit}>
+            {/* ...Your Input fields remain the same... */}
             <Input
               label="Full Name"
               placeholder="Enter your full name"
@@ -118,6 +166,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
             </div>
 
         
+            {/* The "What defines you" part is UI only and not sent to the backend */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 What defines you?
@@ -148,9 +197,14 @@ export default function SignUp({ onPageChange }: SignUpProps) {
               </div>
             </div>
 
-                <Button type="submit" className="w-full mb-4" size="lg">
+            <Button type="submit" className="w-full mb-4" size="lg">
               Create Account
             </Button>
+            
+            {/* 4. Display success or error messages */}
+            {successMessage && <p className="text-green-600 text-center mb-4">{successMessage}</p>}
+            {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
+
 
             <div className="text-center">
               <span className="text-gray-600">Already have an account? </span>

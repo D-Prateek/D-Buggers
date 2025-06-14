@@ -2,25 +2,46 @@ import React, { useState } from 'react';
 import Card from '../ui/Card';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
+import axios from 'axios';
 
 interface SignInProps {
   onPageChange: (page: string) => void;
+  onLoginSuccess: (userData: any) => void;
 }
 
-export default function SignIn({ onPageChange }: SignInProps) {
+export default function SignIn({ onPageChange, onLoginSuccess }: SignInProps) {
   const [formData, setFormData] = useState({
     phoneNumber: '',
     password: '',
   });
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    console.log('Sign in:', formData);
+    setErrorMessage('');
+
+    try {
+      const response = await axios.post('http://localhost:3000/auth/login', formData);
+      
+      console.log('Login successful:', response.data);
+
+      onLoginSuccess(response.data.user);
+
+    } catch (err: any) {
+      console.error('Login failed:', err.response ? err.response.data : err.message);
+
+      if (err.response && err.response.data) {
+        setErrorMessage(err.response.data.message);
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
+    }
   };
 
   return (
@@ -56,7 +77,7 @@ export default function SignIn({ onPageChange }: SignInProps) {
               required
             />
 
-            <div className="mb-6">
+            <div className="mb-6 text-right">
               <button
                 type="button"
                 className="text-red-600 hover:text-red-700 text-sm font-medium"
@@ -68,6 +89,8 @@ export default function SignIn({ onPageChange }: SignInProps) {
             <Button type="submit" className="w-full mb-4" size="lg">
               Sign In
             </Button>
+            
+            {errorMessage && <p className="text-red-600 text-center mb-4">{errorMessage}</p>}
 
             <div className="text-center">
                   <span className="text-gray-600">Don't have an account? </span>
