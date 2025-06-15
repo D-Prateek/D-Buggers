@@ -85,7 +85,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
 
         <Card>
           <form onSubmit={handleSubmit}>
-            {/* ...Your Input fields remain the same... */}
+           
             <Input
               label="Full Name"
               placeholder="Enter your full name"
@@ -157,7 +157,7 @@ export default function SignUp({ onPageChange }: SignUpProps) {
             </div>
 
         
-            {/* The "What defines you" part is UI only and not sent to the backend */}
+         
             <div className="mb-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 What defines you?
