@@ -12,7 +12,6 @@ interface ServicesProps {
 export default function Services({ onPageChange, initialTab = 'profile' }: ServicesProps) {
   const [activeTab, setActiveTab] = useState(initialTab);
   const [formData, setFormData] = useState<{ [key: string]: string }>(() => {
-    // Try to load from localStorage for persistence
     const saved = localStorage.getItem('pregnancyProfileFormData');
     return saved ? JSON.parse(saved) : {
       name: '',
@@ -106,10 +105,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
               <Phone className="w-4 h-4 text-gray-400" />
               <span className="text-sm text-gray-600">{formData.phone || 'No phone'}</span>
             </div>
-            {/* Location is not in form, so skip or add a placeholder */}
           </div>
-
-          {/* Progress bar can be calculated based on trimester or left static */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm font-medium text-gray-700">Pregnancy Progress</span>
