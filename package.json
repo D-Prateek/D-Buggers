@@ -6,6 +6,8 @@
     "i18next": "^25.2.1",
     "i18next-http-backend": "^3.0.2",
     "mongodb": "^6.17.0",
+    "mongoose": "^8.15.2",
+    "nest": "^0.1.6",
     "react-i18next": "^15.5.3"
   }
 }
