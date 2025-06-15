@@ -8,6 +8,7 @@ import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 import Quiz from './components/pages/Quiz';
 import Marketplace from './components/pages/Marketplace';
+import ConsultDoctor from './components/pages/ConsultDoctor';
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
   };
 
   const handlePageChange = (page: string) => {
-    if (page === 'services' && !loggedInUser) {
+    if ((page === 'services' || page === 'consult-doctor') && !loggedInUser) {
       setCurrentPage('signin');
     } else {
       setCurrentPage(page);
@@ -61,6 +62,8 @@ function App() {
         return loggedInUser ? <Services onPageChange={handlePageChange} initialTab="nutrition" /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
       case 'government-program':
         return loggedInUser ? <Services onPageChange={handlePageChange} initialTab="programs" /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
+      case 'consult-doctor':
+        return loggedInUser ? <ConsultDoctor /> : <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
       case 'signup':
         return <SignUp onPageChange={handlePageChange} />;
       case 'signin':

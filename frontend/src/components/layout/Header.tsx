@@ -5,7 +5,7 @@ interface HeaderProps {
   currentPage: string;
   onPageChange: (page: string) => void;
   isLoggedIn: boolean;
-  onLogout: () => void; 
+  onLogout: () => void;
 }
 
 
@@ -20,7 +20,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   useEffect(() => {
- 
+
     const addScript = () => {
       const script = document.createElement('script');
       script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
@@ -33,7 +33,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
       new window.google.translate.TranslateElement(
         {
           pageLanguage: 'en',
-          includedLanguages: 'en,ne', 
+          includedLanguages: 'en,ne',
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false,
           multilanguagePage: true,
@@ -64,7 +64,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
     }
 
     return () => {
- 
+
     };
   }, []);
 
@@ -76,17 +76,18 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
   const authNavigation = [
     ...baseNavigation,
     { name: 'Our Services', id: 'services' },
+    { name: 'Consult Doctor', id: 'consult-doctor' },
     { name: 'Marketplace', id: 'marketplace' },
   ];
 
-  
+
 
   const guestNavigation = [
     ...baseNavigation,
     { name: 'Marketplace', id: 'marketplace' },
     { name: 'Sign In', id: 'signin' },
   ];
-  
+
   const navigation = isLoggedIn ? authNavigation : guestNavigation;
 
   return (
@@ -98,7 +99,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
         .goog-te-gadget .goog-te-combo option:first-child {
           display: none !important;
         }
-        
+
         /* Style the translate dropdown */
         .goog-te-combo {
           background-color: white !important;
@@ -113,33 +114,33 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
           font-family: inherit !important;
           cursor: pointer !important;
         }
-        
+
         .goog-te-combo:hover {
           border-color: #dc2626 !important;
           box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
         }
-        
+
         .goog-te-combo:focus {
           border-color: #dc2626 !important;
           box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
         }
-        
+
         /* Style the gadget container */
         .goog-te-gadget {
           font-family: inherit !important;
           font-size: 0 !important;
           color: transparent !important;
         }
-        
+
         .goog-te-gadget .goog-te-combo {
           margin: 0 !important;
         }
-        
+
         /* Hide the top banner completely */
         .goog-te-banner-frame {
           display: none !important;
         }
-        
+
         /* Ensure menu appears above other elements */
         .goog-te-menu-frame {
           z-index: 9999 !important;
@@ -147,13 +148,13 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
           border-radius: 0.5rem !important;
           border: 1px solid #e5e7eb !important;
         }
-        
+
         /* Reset body positioning */
         body {
           top: 0 !important;
           position: static !important;
         }
-        
+
         /* Hide iframe */
         .skiptranslate > iframe {
           height: 0 !important;
@@ -161,7 +162,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
           box-shadow: none !important;
           display: none !important;
         }
-        
+
         /* Custom translate widget container styling */
         .translate-widget-container {
           position: relative;
@@ -169,12 +170,12 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
           align-items: center;
           gap: 0.5rem;
         }
-        
+
         /* Hide "Select Language" text */
         .goog-te-gadget-simple .goog-te-menu-value span:first-child {
           display: none !important;
         }
-        
+
         .goog-te-gadget-simple .goog-te-menu-value:before {
           content: 'Language' !important;
           color: #6b7280 !important;
@@ -184,11 +185,11 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
       <header className="bg-white shadow-sm sticky top-0 pt-3 z-20 h-[10vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-           
+
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onPageChange('home')}>
-              <img 
-                src="/src/assets/Logo.png" 
-                alt="Aama Care Logo" 
+              <img
+                src="/src/assets/Logo.png"
+                alt="Aama Care Logo"
                 className="h-[10vh]"
               />
               <span className="text-xl font-bold text-gray-900">Aama Care</span>
@@ -208,7 +209,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
                   {item.name}
                 </button>
               ))}
-              
+
               {isLoggedIn && (
                 <button
                   onClick={() => onPageChange('quiz')}
@@ -254,7 +255,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
               </button>
             </div>
           </div>
-         
+
           {isMobileMenuOpen && (
             <div className="md:hidden bg-[#ffffff] m-0 border-t border-gray-200 p-5">
               <div className="flex flex-col space-y-3">
@@ -296,7 +297,7 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
                   <Globe className="w-4 h-4 text-gray-500" />
                   <div id="google_translate_element_mobile"></div>
                 </div>
-                
+
                 {isLoggedIn ? (
                   <button
                     onClick={() => {
