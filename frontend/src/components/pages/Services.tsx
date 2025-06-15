@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Calendar, Heart, User, Phone, Mail, MapPin, Droplets, AlertTriangle, Pill, Syringe, FileText, Apple, Clock } from 'lucide-react';
+import { ArrowLeft, Calendar, Heart, User, Phone, Mail, Droplets, AlertTriangle, Pill, Syringe, FileText, Apple, Clock } from 'lucide-react';
 import Card from '../ui/Card';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
@@ -11,27 +11,35 @@ interface ServicesProps {
 
 export default function Services({ onPageChange, initialTab = 'profile' }: ServicesProps) {
   const [activeTab, setActiveTab] = useState(initialTab);
-    const [formData, setFormData] = useState({
-    name: '',
-    dateOfBirth: '',
-    email: '',
-    phone: '',
-    trimester: '',
-    dueDate: '',
-    bloodGroup: '',
-    medicalConditions: '',
-    allergies: '',
-    medications: '',
+  const [formData, setFormData] = useState<{ [key: string]: string }>(() => {
+    // Try to load from localStorage for persistence
+    const saved = localStorage.getItem('pregnancyProfileFormData');
+    return saved ? JSON.parse(saved) : {
+      name: '',
+      dateOfBirth: '',
+      email: '',
+      phone: '',
+      trimester: '',
+      dueDate: '',
+      bloodGroup: '',
+      medicalConditions: '',
+      allergies: '',
+      medications: '',
+    };
   });
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev: { [key: string]: string }) => {
+      const updated = { ...prev, [field]: value };
+      localStorage.setItem('pregnancyProfileFormData', JSON.stringify(updated));
+      return updated;
+    });
   };
 
-        const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
- 
+    localStorage.setItem('pregnancyProfileFormData', JSON.stringify(formData));
+    setActiveTab('profile');
   };
 
   const audioVisualGuides = [
@@ -69,23 +77,141 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
   ];
 
 
-    const profileData = {
-    name: 'Sita Sharma',
-    age: 28,
-    email: 'sita.sharma@example.com',
-    phone: '+977 9841234567',
-    location: 'Kathmandu, Nepal',
-    trimester: '2nd Trimester',
-    dueDate: 'March 15, 2025',
-    progress: 65,
-    bloodGroup: 'O+',
-         medicalConditions: 'None',
-    allergies: 'None',
-    medications: 'Prenatal vitamins',
-    lastCheckup: 'None',
-    nextAppointment: 'None',
-    doctor: 'None',
-  };
+  const renderProfile = () => (
+    <div className="max-w-4xl mx-auto space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Pregnancy Profile</h2>
+        <p className="text-lg text-gray-600">
+          Complete health profile and pregnancy tracking dashboard
+        </p>
+      </div>
+
+      <div className="grid lg:grid-cols-3 gap-6">
+        <Card className="lg:col-span-1">
+          <div className="text-center mb-6">
+            <div className="w-24 h-24 bg-gradient-to-br from-red-400 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <User className="w-12 h-12 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900">{formData.name || 'Your Name'}</h3>
+            <p className="text-gray-600">{formData.dateOfBirth ? `DOB: ${formData.dateOfBirth}` : ''} {formData.trimester && `• ${formData.trimester} Trimester`}</p>
+            <p className="text-sm text-gray-500 mt-1">Due: {formData.dueDate || 'N/A'}</p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center space-x-3">
+              <Mail className="w-4 h-4 text-gray-400" />
+              <span className="text-sm text-gray-600">{formData.email || 'No email'}</span>
+            </div>
+            <div className="flex items-center space-x-3">
+              <Phone className="w-4 h-4 text-gray-400" />
+              <span className="text-sm text-gray-600">{formData.phone || 'No phone'}</span>
+            </div>
+            {/* Location is not in form, so skip or add a placeholder */}
+          </div>
+
+          {/* Progress bar can be calculated based on trimester or left static */}
+          <div className="mt-6">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-gray-700">Pregnancy Progress</span>
+              <span className="text-sm text-gray-600">{formData.trimester === '1st' ? '20%' : formData.trimester === '2nd' ? '60%' : formData.trimester === '3rd' ? '90%' : '0%'}</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-red-500 to-pink-500 h-2 rounded-full transition-all duration-300"
+                style={{ width: formData.trimester === '1st' ? '20%' : formData.trimester === '2nd' ? '60%' : formData.trimester === '3rd' ? '90%' : '0%' }}
+              ></div>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="lg:col-span-2">
+          <h3 className="text-xl font-bold text-gray-900 mb-6">Medical Information</h3>
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <Droplets className="w-5 h-5 text-red-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Blood Group</p>
+                  <p className="font-medium text-gray-900">{formData.bloodGroup || 'N/A'}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <AlertTriangle className="w-5 h-5 text-orange-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Allergies</p>
+                  <p className="font-medium text-gray-900">{formData.allergies || 'None'}</p>
+                </div>
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Heart className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Medical Conditions</p>
+                  <p className="font-medium text-gray-900">{formData.medicalConditions || 'None'}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                  <Pill className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500">Medications</p>
+                  <p className="font-medium text-gray-900">{formData.medications || 'None'}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border-t pt-6">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4">Appointments</h4>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-500 mb-1">Last Checkup</p>
+                <p className="font-medium text-gray-900">N/A</p>
+                <p className="text-sm text-gray-600">with N/A</p>
+              </div>
+              <div className="bg-red-50 p-4 rounded-lg">
+                <p className="text-sm text-gray-500 mb-1">Next Appointment</p>
+                <p className="font-medium text-gray-900">N/A</p>
+                <p className="text-sm text-gray-600">with N/A</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+
+  const audioVisualGuidesContent = () => (
+    <div className="space-y-6">
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Audio-Visual Health Guides</h2>
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          Step-by-step video guides covering pregnancy care, delivery preparation, and newborn care in local languages.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {audioVisualGuides.map((guide, index) => (
+          <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+            <div className="relative mb-4">
+              <iframe className="w-full h-48 object-cover rounded-lg" src={guide.videoSource}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share" allowFullScreen>
+              </iframe>
+
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{guide.title}</h3>
+            <p className="text-gray-600 text-sm mb-4">{guide.description}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
 
   const vaccinationSchedule = [
     {
@@ -113,100 +239,6 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
       date: 'Feb 20, 2025',
     },
   ];
-
-  const governmentPrograms = [
-    {
-      name: 'Aama Programme',
-      description: 'Cash incentive for institutional delivery',
-      amount: 'NPR 2,000',
-      eligibility: 'All pregnant women',
-      status: 'eligible',
-      deadline: 'Within 42 days of delivery',
-    },
-    {
-      name: 'Sunaulo Hazar Din',
-      description: 'Nutrition support for first 1000 days',
-      amount: 'NPR 1,000/month',
-      eligibility: 'Pregnant and lactating mothers',
-      status: 'applied',
-      deadline: 'Ongoing',
-    },
-    {
-      name: 'Free ANC Services',
-      description: 'Free antenatal care services',
-      amount: 'Free',
-      eligibility: 'All pregnant women',
-      status: 'active',
-      deadline: 'Throughout pregnancy',
-    },
-    {
-      name: 'Iron Folic Acid Tablets',
-      description: 'Free iron and folic acid supplementation',
-      amount: 'Free',
-      eligibility: 'All pregnant women',
-      status: 'active',
-      deadline: 'Throughout pregnancy',
-    },
-  ];
-
-  const pregnancyMilestones = [
-    {
-      week: 12,
-      title: 'First Trimester Complete',
-      description: 'Major organs formed, morning sickness may decrease',
-      completed: true,
-    },
-    {
-      week: 20,
-      title: 'Anatomy Scan',
-      description: 'Detailed ultrasound to check baby\'s development',
-      completed: true,
-    },
-    {
-      week: 24,
-      title: 'Viability Milestone',
-      description: 'Baby has a good chance of survival if born',
-      completed: false,
-      current: true,
-    },
-    {
-      week: 28,
-      title: 'Third Trimester Begins',
-      description: 'Rapid growth phase, more frequent checkups',
-      completed: false,
-    },
-    {
-      week: 36,
-      title: 'Full Term Approaching',
-      description: 'Baby is considered full term at 37 weeks',
-      completed: false,
-    },
-  ];
-
-  const renderAudioVisualGuides = () => (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Audio-Visual Health Guides</h2>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-          Step-by-step video guides covering pregnancy care, delivery preparation, and newborn care in local languages.
-        </p>
-      </div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {audioVisualGuides.map((guide, index) => (
-          <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
-            <div className="relative mb-4">
-              <iframe className="w-full h-48 object-cover rounded-lg" src={guide.videoSource}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share" allowFullScreen>
-              </iframe>
-              
-            </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">{guide.title}</h3>
-            <p className="text-gray-600 text-sm mb-4">{guide.description}</p>
-          </Card>
-        ))}
-      </div>
-    </div>
-  );
 
   const renderVaccinationCalendar = () => (
     <div className="space-y-6">
@@ -254,6 +286,41 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
       </div>
     </div>
   );
+
+  const governmentPrograms = [
+    {
+      name: 'Aama Programme',
+      description: 'Cash incentive for institutional delivery',
+      amount: 'NPR 2,000',
+      eligibility: 'All pregnant women',
+      status: 'eligible',
+      deadline: 'Within 42 days of delivery',
+    },
+    {
+      name: 'Sunaulo Hazar Din',
+      description: 'Nutrition support for first 1000 days',
+      amount: 'NPR 1,000/month',
+      eligibility: 'Pregnant and lactating mothers',
+      status: 'applied',
+      deadline: 'Ongoing',
+    },
+    {
+      name: 'Free ANC Services',
+      description: 'Free antenatal care services',
+      amount: 'Free',
+      eligibility: 'All pregnant women',
+      status: 'active',
+      deadline: 'Throughout pregnancy',
+    },
+    {
+      name: 'Iron Folic Acid Tablets',
+      description: 'Free iron and folic acid supplementation',
+      amount: 'Free',
+      eligibility: 'All pregnant women',
+      status: 'active',
+      deadline: 'Throughout pregnancy',
+    },
+  ];
 
   const renderProgramTracker = () => (
     <div className="space-y-6">
@@ -316,6 +383,40 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
     </div>
   );
 
+  const pregnancyMilestones = [
+    {
+      week: 12,
+      title: 'First Trimester Complete',
+      description: 'Major organs formed, morning sickness may decrease',
+      completed: true,
+    },
+    {
+      week: 20,
+      title: 'Anatomy Scan',
+      description: 'Detailed ultrasound to check baby\'s development',
+      completed: true,
+    },
+    {
+      week: 24,
+      title: 'Viability Milestone',
+      description: 'Baby has a good chance of survival if born',
+      completed: false,
+      current: true,
+    },
+    {
+      week: 28,
+      title: 'Third Trimester Begins',
+      description: 'Rapid growth phase, more frequent checkups',
+      completed: false,
+    },
+    {
+      week: 36,
+      title: 'Full Term Approaching',
+      description: 'Baby is considered full term at 37 weeks',
+      completed: false,
+    },
+  ];
+
   const renderPregnancyTracker = () => (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -326,7 +427,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-       
+
         <Card>
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Current Status</h3>
           <div className="text-center mb-6">
@@ -334,7 +435,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
             <p className="text-gray-600">2nd Trimester</p>
             <p className="text-sm text-gray-500 mt-1">Due: March 15, 2025</p>
           </div>
-          
+
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm font-medium text-gray-700">Pregnancy Progress</span>
@@ -360,21 +461,21 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
           </div>
         </Card>
 
-      
+
         <Card>
           <h3 className="text-xl font-semibold text-gray-900 mb-4">This Week (Week 24)</h3>
           <div className="space-y-4">
             <div>
               <h4 className="font-medium text-gray-900 mb-2">Baby's Development</h4>
               <p className="text-sm text-gray-600">
-                Your baby is about the size of a cantaloupe! The baby's hearing is developing, 
+                Your baby is about the size of a cantaloupe! The baby's hearing is developing,
                     and they can now hear your voice and heartbeat.
               </p>
             </div>
             <div>
               <h4 className="font-medium text-gray-900 mb-2">Your Body</h4>
               <p className="text-sm text-gray-600">
-                You may notice your belly button starting to pop out. Back pain and 
+                You may notice your belly button starting to pop out. Back pain and
                 leg cramps are common at this stage.
               </p>
             </div>
@@ -431,14 +532,14 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
     </div>
   );
 
-  const renderNutrition = () => (
+  const nutritionContent = () => (
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">Pregnancy Nutrition Guide</h2>
         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
           Complete nutrition guidance for a healthy pregnancy journey.
         </p>
-               </div>
+      </div>
      <div className="grid lg:grid-cols-2 gap-8">
                <Card>
                      <div className="flex items-center space-x-3 mb-6">
@@ -551,7 +652,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
         </div>
       </Card>
 
-  
+
       <div className="grid md:grid-cols-2 gap-6">
         <Card>
           <h3 className="text-xl font-semibold text-gray-900 mb-4">Hydration</h3>
@@ -582,125 +683,6 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
                 <li>• Calcium (if dietary intake is low)</li>
                 <li>• Vitamin D</li>
               </ul>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
-  );
-
-  const renderProfile = () => (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">Pregnancy Profile</h2>
-        <p className="text-lg text-gray-600">
-          Complete health profile and pregnancy tracking dashboard
-        </p>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-6">
-   
-        <Card className="lg:col-span-1">
-          <div className="text-center mb-6">
-            <div className="w-24 h-24 bg-gradient-to-br from-red-400 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
-              <User className="w-12 h-12 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900">{profileData.name}</h3>
-            <p className="text-gray-600">Age {profileData.age} • {profileData.trimester}</p>
-            <p className="text-sm text-gray-500 mt-1">Due: {profileData.dueDate}</p>
-          </div>
-
-          <div className="space-y-3">
-            <div className="flex items-center space-x-3">
-              <Mail className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-600">{profileData.email}</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Phone className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-600">{profileData.phone}</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <MapPin className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-600">{profileData.location}</span>
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-gray-700">Pregnancy Progress</span>
-              <span className="text-sm text-gray-600">{profileData.progress}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div
-                className="bg-gradient-to-r from-red-500 to-pink-500 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${profileData.progress}%` }}
-              ></div>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="lg:col-span-2">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Medical Information</h3>
-          
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                  <Droplets className="w-5 h-5 text-red-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Blood Group</p>
-                  <p className="font-medium text-gray-900">{profileData.bloodGroup}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <AlertTriangle className="w-5 h-5 text-orange-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Allergies</p>
-                  <p className="font-medium text-gray-900">{profileData.allergies}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Heart className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Medical Conditions</p>
-                  <p className="font-medium text-gray-900">{profileData.medicalConditions}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                  <Pill className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Medications</p>
-                  <p className="font-medium text-gray-900">{profileData.medications}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t pt-6">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">Appointments</h4>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-500 mb-1">Last Checkup</p>
-                <p className="font-medium text-gray-900">{profileData.lastCheckup}</p>
-                <p className="text-sm text-gray-600">with {profileData.doctor}</p>
-              </div>
-              <div className="bg-red-50 p-4 rounded-lg">
-                <p className="text-sm text-gray-500 mb-1">Next Appointment</p>
-                <p className="font-medium text-gray-900">{profileData.nextAppointment}</p>
-                <p className="text-sm text-gray-600">with {profileData.doctor}</p>
-              </div>
             </div>
           </div>
         </Card>
@@ -937,11 +919,11 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {activeTab === 'guides' && renderAudioVisualGuides()}
+        {activeTab === 'guides' && audioVisualGuidesContent()}
         {activeTab === 'vaccination' && renderVaccinationCalendar()}
         {activeTab === 'programs' && renderProgramTracker()}
         {activeTab === 'tracker' && renderPregnancyTracker()}
-        {activeTab === 'nutrition' && renderNutrition()}
+        {activeTab === 'nutrition' && nutritionContent()}
         {activeTab === 'profile' && renderProfile()}
         {activeTab === 'form' && renderForm()}
       </div>
