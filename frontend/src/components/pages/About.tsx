@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Heart, Users, Shield } from 'lucide-react';
 import Card from '../ui/Card';
 

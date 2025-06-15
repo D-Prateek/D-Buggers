@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Calendar, Heart, Smartphone } from 'lucide-react';
 import Card from '../ui/Card';
 import Button from '../ui/Button';

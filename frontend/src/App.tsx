@@ -7,6 +7,7 @@ import Services from './components/pages/Services';
 import SignUp from './components/pages/SignUp';
 import SignIn from './components/pages/SignIn';
 import Quiz from './components/pages/Quiz';
+import Marketplace from './components/pages/Marketplace';
 
 
 function App() {
@@ -66,6 +67,8 @@ function App() {
         return <SignIn onPageChange={handlePageChange} onLoginSuccess={handleLoginSuccess} />;
       case 'quiz':
         return <Quiz onPageChange={setCurrentPage} />;
+      case 'marketplace':
+        return <Marketplace />;
       default:
         return <Home onPageChange={handlePageChange} isLoggedIn={!!loggedInUser} />;
     }

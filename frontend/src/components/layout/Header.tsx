@@ -76,10 +76,14 @@ export default function Header({ currentPage, onPageChange, isLoggedIn, onLogout
   const authNavigation = [
     ...baseNavigation,
     { name: 'Our Services', id: 'services' },
+    { name: 'Marketplace', id: 'marketplace' },
   ];
+
+  
 
   const guestNavigation = [
     ...baseNavigation,
+    { name: 'Marketplace', id: 'marketplace' },
     { name: 'Sign In', id: 'signin' },
   ];
   

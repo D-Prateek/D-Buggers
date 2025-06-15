@@ -4,6 +4,7 @@ import Card from '../ui/Card';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
 
+
 interface ServicesProps {
   onPageChange: (page: string) => void;
   initialTab?: string;
@@ -44,7 +45,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
     {
       title: 'Nutrition During Pregnancy',
       description: 'Complete guide to healthy eating during pregnancy',
-      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
+      videoSource: 'https://www.youtube.com/embed/XwJ7kFu-k3w',
     },
     {
       title: 'Labor Preparation',
@@ -54,17 +55,17 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
     {
       title: 'Newborn Care',
       description: 'Essential newborn care techniques',
-      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
+      videoSource: 'https://www.youtube.com/embed/teqA0OOEXw0',
     },
     {
       title: 'Breastfeeding Guide',
       description: 'Complete breastfeeding guide for new mothers',
-      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
+      videoSource: 'https://www.youtube.com/embed/b_vO-OAREBA',
     },
     {
       title: 'Postpartum Recovery',
       description: 'Recovery tips and care after delivery',
-      videoSource: 'https://www.youtube.com/embed/26hRlW1aMWA',
+      videoSource: 'https://www.youtube.com/embed/95AYFLd0d24',
     },
   ];
 
@@ -507,6 +508,17 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
           </div>
         </Card>
       </div>
+
+      <Card>
+        <div className="text-center">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Explore Our Marketplace</h3>
+            <p className="text-gray-600 mb-6">Find curated products for your nutritional needs.</p>
+            <Button onClick={() => onPageChange('marketplace')}>
+                Go to Marketplace
+            </Button>
+        </div>
+      </Card>
+      
     <Card>
                   <h3 className="text-xl font-semibold text-gray-900 mb-6">Sample Daily Meal Plan</h3>
         
@@ -586,6 +598,7 @@ export default function Services({ onPageChange, initialTab = 'profile' }: Servi
           </div>
         </Card>
       </div>
+  
     </div>
   );
 
