@@ -14,11 +14,11 @@
 
 ## Features
 
--**Pregnacy Profile**: You can have your Complete health profile and pregnancy tracking dashboard including your medical information and appointments.
+- **Pregnacy Profile**: You can have your Complete health profile and pregnancy tracking dashboard including your medical information and appointments.
 
 - **Nutrition Guide**: We provide a nutritious diet plan and food to avoid for your Health.
 
--**Marketplace**: You can get Cheap and Affordable foods in your pregnancy time.
+- **Marketplace**: You can get Cheap and Affordable foods in your pregnancy time.
 
 - **Audio Visual Guide**: We provide you a necessary set of Guides in your Pregnancy time.
 
